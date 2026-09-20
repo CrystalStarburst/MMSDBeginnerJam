@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cufrtq38ysis7"]
+
+[ext_resource type="PackedScene" uid="uid://camdl5d5hchd7" path="res://Scenes/level_1.tscn" id="1_pu3va"]
+[ext_resource type="PackedScene" uid="uid://c3tn1ecaxo8qo" path="res://Scenes/player.tscn" id="2_0e3vx"]
+
+[node name="Main Game" type="Node" unique_id=2052895336]
+
+[node name="LevelRoot" type="Node2D" parent="." unique_id=803201644]
+unique_name_in_owner = true
+
+[node name="Level 1" parent="LevelRoot" unique_id=1265214180 instance=ExtResource("1_pu3va")]
+
+[node name="EntityRoot" type="Node2D" parent="." unique_id=293602032]
+unique_name_in_owner = true
+
+[node name="Player" parent="EntityRoot" unique_id=2066149061 instance=ExtResource("2_0e3vx")]
+
+[node name="Camera2D" type="Camera2D" parent="EntityRoot/Player" unique_id=1665629990]
+
+[node name="EffectRoot" type="Node2D" parent="." unique_id=1774317046]
+unique_name_in_owner = true
+
+[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=322586344]
+unique_name_in_owner = true
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=686770823]
+unique_name_in_owner = true
