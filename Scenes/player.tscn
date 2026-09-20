@@ -54,3 +54,14 @@ offset = Vector2(0, -4)
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="." unique_id=149064636]
 shape = SubResource("RectangleShape2D_4kxuq")
+
+[node name="DashFrames" type="Timer" parent="." unique_id=1661910972]
+wait_time = 0.2
+one_shot = true
+
+[node name="DashCD" type="Timer" parent="." unique_id=186339985]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="timeout" from="DashFrames" to="." method="_on_dash_frames_timeout"]
+[connection signal="timeout" from="DashCD" to="." method="_on_dash_cd_timeout"]
