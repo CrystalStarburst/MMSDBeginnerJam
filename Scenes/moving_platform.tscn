@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bp745mhrun53x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1b7n"]
+size = Vector2(20, 4)
+
+[node name="Moving platform" type="AnimatableBody2D" unique_id=381357039]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1551788857]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=713177857]
+shape = SubResource("RectangleShape2D_k1b7n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1613891671]
