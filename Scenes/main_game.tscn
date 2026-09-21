@@ -5,6 +5,9 @@
 
 [node name="Main Game" type="Node" unique_id=2052895336]
 
+[node name="GameManager" type="Node" parent="." unique_id=1901313845]
+unique_name_in_owner = true
+
 [node name="LevelRoot" type="Node2D" parent="." unique_id=803201644]
 unique_name_in_owner = true
 
@@ -22,6 +25,13 @@ unique_name_in_owner = true
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=322586344]
 unique_name_in_owner = true
+
+[node name="TimerLabel" type="RichTextLabel" parent="HUDLayer" unique_id=2020346696 groups=["UI"]]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "hi
+"
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=686770823]
 unique_name_in_owner = true

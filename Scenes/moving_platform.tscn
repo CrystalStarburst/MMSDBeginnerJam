@@ -1,13 +1,47 @@
 [gd_scene format=3 uid="uid://bp745mhrun53x"]
 
+[ext_resource type="Script" uid="uid://bhspeqiq8optv" path="res://Scripts/moving_platform.gd" id="1_anqd2"]
+[ext_resource type="Texture2D" uid="uid://b0k8qfhu16w42" path="res://icon.svg" id="1_vvyo4"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1b7n"]
 size = Vector2(20, 4)
 
+[sub_resource type="Animation" id="Animation_myvba"]
+resource_name = "Movement"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_vvyo4"]
+length = 2.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_anqd2"]
+_data = {
+&"Movement": SubResource("Animation_myvba"),
+&"RESET": SubResource("Animation_vvyo4")
+}
+
 [node name="Moving platform" type="AnimatableBody2D" unique_id=381357039]
+script = ExtResource("1_anqd2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1551788857]
+scale = Vector2(0.16, 0.04)
+texture = ExtResource("1_vvyo4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=713177857]
 shape = SubResource("RectangleShape2D_k1b7n")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1613891671]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=247851828]
+libraries/ = SubResource("AnimationLibrary_anqd2")
+autoplay = &"Movement"

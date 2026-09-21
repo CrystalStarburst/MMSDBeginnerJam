@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://pkvam56t1aji"]
+
+[ext_resource type="Script" uid="uid://dstnspqpmglyw" path="res://Scripts/start_timer.gd" id="1_gyrkf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
+
+[node name="Start Timer" type="Area2D" unique_id=1485348063]
+collision_mask = 2
+script = ExtResource("1_gyrkf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=277891967]
+shape = SubResource("RectangleShape2D_4kxuq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
