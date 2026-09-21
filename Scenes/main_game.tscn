@@ -17,6 +17,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Player" parent="EntityRoot" unique_id=2066149061 instance=ExtResource("2_0e3vx")]
+position = Vector2(-352, -267)
 
 [node name="Camera2D" type="Camera2D" parent="EntityRoot/Player" unique_id=1665629990]
 

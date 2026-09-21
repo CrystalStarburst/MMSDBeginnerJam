@@ -17,5 +17,4 @@ func _ready() -> void:
 	library.add_animation(animname, anim)
 	
 	animation_player.play(animname)
-	print("yes")
 	
