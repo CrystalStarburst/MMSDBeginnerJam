@@ -19,6 +19,7 @@ unique_name_in_owner = true
 [node name="Player" parent="EntityRoot" unique_id=2066149061 instance=ExtResource("2_0e3vx")]
 
 [node name="Camera2D" type="Camera2D" parent="EntityRoot/Player" unique_id=1665629990]
+zoom = Vector2(2.5, 2.5)
 
 [node name="EffectRoot" type="Node2D" parent="." unique_id=1774317046]
 unique_name_in_owner = true
