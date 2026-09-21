@@ -1,9 +1,25 @@
 [gd_scene format=3 uid="uid://bd3sf85v7ovwu"]
 
 [ext_resource type="Script" uid="uid://bpk6v33m3t5b2" path="res://Scripts/bounce_pad.gd" id="1_3p40j"]
+[ext_resource type="Texture2D" uid="uid://dge0w6ffmvfq3" path="res://Sprites/world_tileset.png" id="2_y18eo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
 size = Vector2(16, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctbhy"]
+atlas = ExtResource("2_y18eo")
+region = Rect2(112, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cvnsp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctbhy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Bounce Pad" type="Area2D" unique_id=1249005547]
 collision_mask = 2
@@ -14,5 +30,6 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_4kxuq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2037997295]
+sprite_frames = SubResource("SpriteFrames_cvnsp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
