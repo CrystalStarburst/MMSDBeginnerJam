@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c2g7yogyatcx3" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://b0iigjx44bck4" path="res://Sprites/knight.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://rwty44wyigvn" path="res://Sprites/knight_idle.png" id="2_6t5aa"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6t5aa"]
+size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_v0iea")
@@ -45,6 +49,8 @@ size = Vector2(8, 16)
 [node name="Player" type="CharacterBody2D" unique_id=2066149061 groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_cvnsp")
+rewind_particles = SubResource("PlaceholderTexture2D_6t5aa")
+rewind_player = ExtResource("2_6t5aa")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=280969273]
 texture_filter = 1
@@ -61,8 +67,9 @@ wait_time = 0.2
 one_shot = true
 
 [node name="DashCD" type="Timer" parent="." unique_id=186339985]
-wait_time = 0.8
+wait_time = 0.5
 one_shot = true
 
+[connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="timeout" from="DashFrames" to="." method="_on_dash_frames_timeout"]
 [connection signal="timeout" from="DashCD" to="." method="_on_dash_cd_timeout"]
