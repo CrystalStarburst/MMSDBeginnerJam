@@ -1,23 +1,47 @@
 [gd_scene format=3 uid="uid://bd3sf85v7ovwu"]
 
 [ext_resource type="Script" uid="uid://bpk6v33m3t5b2" path="res://Scripts/bounce_pad.gd" id="1_3p40j"]
-[ext_resource type="Texture2D" uid="uid://dge0w6ffmvfq3" path="res://Sprites/world_tileset.png" id="2_y18eo"]
+[ext_resource type="Texture2D" uid="uid://hn3hporao7gr" path="res://Sprites/Woody_Bouncy_Pad_1.png" id="2_nd737"]
+[ext_resource type="Texture2D" uid="uid://ckvav5lunnm2n" path="res://Sprites/Woody_Bouncy_PadMiddle.png" id="3_8c1ua"]
+[ext_resource type="Texture2D" uid="uid://h4twge8wrbeu" path="res://Sprites/Woody_Bouncy_PadDown.png" id="4_ewb1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
-size = Vector2(16, 12)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ctbhy"]
-atlas = ExtResource("2_y18eo")
-region = Rect2(112, 80, 16, 16)
+size = Vector2(14, 10)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cvnsp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ctbhy")
+"texture": ExtResource("3_8c1ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ewb1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ewb1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8c1ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8c1ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8c1ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nd737")
+}],
+"loop": 0,
+"name": &"Bounce",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nd737")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"Default",
 "speed": 5.0
 }]
 
@@ -26,10 +50,12 @@ collision_mask = 2
 script = ExtResource("1_3p40j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=638760251]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_4kxuq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2037997295]
+[node name="BounceSprite2D" type="AnimatedSprite2D" parent="." unique_id=2037997295]
 sprite_frames = SubResource("SpriteFrames_cvnsp")
+animation = &"Bounce"
+autoplay = "Default"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

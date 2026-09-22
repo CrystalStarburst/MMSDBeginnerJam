@@ -67,9 +67,36 @@ wait_time = 0.2
 one_shot = true
 
 [node name="DashCD" type="Timer" parent="." unique_id=186339985]
-wait_time = 0.5
+wait_time = 0.4
 one_shot = true
+
+[node name="JumpCoyote" type="Timer" parent="." unique_id=664190712]
+wait_time = 0.15
+one_shot = true
+ignore_time_scale = true
+
+[node name="JumpBuffer" type="Timer" parent="." unique_id=509353355]
+wait_time = 0.15
+one_shot = true
+ignore_time_scale = true
+
+[node name="DashBuffer" type="Timer" parent="." unique_id=1648296648]
+wait_time = 0.15
+one_shot = true
+ignore_time_scale = true
+
+[node name="BounceCoyote" type="Timer" parent="." unique_id=1639553744]
+wait_time = 0.05
+one_shot = true
+ignore_time_scale = true
+
+[node name="BounceBuffer" type="Timer" parent="." unique_id=1260951390]
+wait_time = 0.1
+one_shot = true
+ignore_time_scale = true
 
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="timeout" from="DashFrames" to="." method="_on_dash_frames_timeout"]
 [connection signal="timeout" from="DashCD" to="." method="_on_dash_cd_timeout"]
+[connection signal="timeout" from="JumpCoyote" to="." method="_on_jump_coyote_timeout"]
+[connection signal="timeout" from="BounceCoyote" to="." method="_on_bounce_coyote_timeout"]

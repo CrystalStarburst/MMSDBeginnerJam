@@ -2,6 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://camdl5d5hchd7" path="res://Scenes/level_1.tscn" id="1_pu3va"]
 [ext_resource type="PackedScene" uid="uid://c3tn1ecaxo8qo" path="res://Scenes/player.tscn" id="2_0e3vx"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_6j5ir"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_mgc0q"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_mgc0q"]
+
+[sub_resource type="Resource" id="Resource_bb2iq"]
+script = ExtResource("4_mgc0q")
 
 [node name="Main Game" type="Node" unique_id=2052895336]
 
@@ -19,8 +25,29 @@ unique_name_in_owner = true
 [node name="Player" parent="EntityRoot" unique_id=2066149061 instance=ExtResource("2_0e3vx")]
 position = Vector2(-352, -267)
 
-[node name="Camera2D" type="Camera2D" parent="EntityRoot/Player" unique_id=1665629990]
+[node name="Phantom Camera" type="Node2D" parent="EntityRoot/Player" unique_id=1457979107 node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(-352, -267)
+script = ExtResource("3_6j5ir")
+follow_mode = 2
+follow_target = NodePath("..")
 zoom = Vector2(2.5, 2.5)
+tween_resource = SubResource("Resource_bb2iq")
+follow_damping = true
+follow_damping_value = Vector2(0.2, 0.2)
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="Player Camera" type="Camera2D" parent="EntityRoot/Player" unique_id=1042298888]
+physics_interpolation_mode = 1
+top_level = true
+position = Vector2(-352, -267)
+zoom = Vector2(2.5, 2.5)
+
+[node name="PhantomCameraHost" type="Node" parent="EntityRoot/Player/Player Camera" unique_id=1907448612]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("5_mgc0q")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="EffectRoot" type="Node2D" parent="." unique_id=1774317046]
 unique_name_in_owner = true

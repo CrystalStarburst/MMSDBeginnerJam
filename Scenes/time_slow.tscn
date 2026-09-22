@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dmikkb6iexbgf"]
+
+[ext_resource type="Script" uid="uid://fuowrafd4wq" path="res://Scripts/time_slow.gd" id="1_ikupb"]
+[ext_resource type="Texture2D" uid="uid://xc0xxl2bu4xn" path="res://Sprites/Slow_down_time.png" id="2_uixkh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kxuq"]
+radius = 32.0
+
+[sub_resource type="Gradient" id="Gradient_uixkh"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.5966851, 0.9723757, 1)
+colors = PackedColorArray(0.7529412, 0.3137255, 0.98039216, 0, 0.7529412, 0.3137255, 0.98039216, 0.5019608, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mgc0q"]
+gradient = SubResource("Gradient_uixkh")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="TimeSlow" type="Area2D" unique_id=1597026668]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ikupb")
+slowdown = 0.5
+radius = 32.0
+
+[node name="TimeSlowCollision2D" type="CollisionShape2D" parent="." unique_id=1124556721]
+shape = SubResource("CircleShape2D_4kxuq")
+
+[node name="Effect Circle" type="Sprite2D" parent="." unique_id=2016480026]
+texture = SubResource("GradientTexture2D_mgc0q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=786037054]
+texture = ExtResource("2_uixkh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
