@@ -120,7 +120,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="MainContainer" type="VBoxContainer" parent="CenterContainer" unique_id=304699711]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
@@ -180,6 +179,7 @@ text = "Quit
 "
 
 [node name="StartLevelContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2066352035]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
