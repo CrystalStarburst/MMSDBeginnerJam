@@ -6,11 +6,12 @@ extends Node
 @export var PCam3: PhantomCamera2D
 @onready var entity_root: Node2D = %EntityRoot
 
-var current_zones: Array 
 
 func init_camera() -> void:
-	pass
+	PCam0.tween_resource.duration = 0.0
 
+func recall_mode(start: bool) -> void:
+	pass
 
 	
 func _on_zone_0_body_entered(body: Node2D) -> void:
@@ -18,6 +19,7 @@ func _on_zone_0_body_entered(body: Node2D) -> void:
 
 func _on_zone_0_body_exited(body: Node2D) -> void:
 	PCam0.priority = 0
+	PCam0.tween_resource.duration = 1.0
 
 
 func _on_zone_1_body_entered(body: Node2D) -> void:

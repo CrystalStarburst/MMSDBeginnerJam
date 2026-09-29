@@ -3,6 +3,8 @@
 [ext_resource type="FontFile" uid="uid://mkxyq174wlvg" path="res://Assets/m5x7.ttf" id="1_f7lyt"]
 [ext_resource type="Texture2D" uid="uid://cf4n41t4blbwo" path="res://Assets/Menu_Buttons_large.png" id="2_4q0ub"]
 [ext_resource type="Texture2D" uid="uid://cha50y7no71g1" path="res://Assets/Menu_Buttons_pressed_large.png" id="3_epxpq"]
+[ext_resource type="FontFile" uid="uid://dm58qjkkxqjox" path="res://Assets/PixelOperator8-Bold.ttf" id="4_epxpq"]
+[ext_resource type="FontFile" uid="uid://njydc2e50off" path="res://Assets/PixelOperator8.ttf" id="5_3pe43"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c78sm"]
 texture = ExtResource("2_4q0ub")
@@ -25,3 +27,5 @@ Button/styles/normal = SubResource("StyleBoxEmpty_0xqxu")
 Button/styles/pressed = SubResource("StyleBoxTexture_tpqse")
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_f7lyt")
+RichTextLabel/fonts/bold_font = ExtResource("4_epxpq")
+RichTextLabel/fonts/normal_font = ExtResource("5_3pe43")

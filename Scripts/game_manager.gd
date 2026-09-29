@@ -81,6 +81,8 @@ func load_player() -> void:
 	player.position = level_root.get_child(0).get_node("WorldSpawn").position
 	default_player_camera.follow_target = player
 	level_root.get_child(0).get_node("CameraManager").init_camera()
+	player.recall.connect(_on_player_recall)
+	
 	print("played loaded")
 	
 
@@ -119,5 +121,7 @@ func load_level(idx: int) -> void:
 func unload_level() -> void:
 	level_root.get_child(0).queue_free()
 	level_root.remove_child(level_root.get_child(0))
-	
+
+func _on_player_recall(start: bool) ->void:
+	level_root.get_child(0).get_node("CameraManager").recall_mode(start)
 	

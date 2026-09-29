@@ -85,7 +85,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Dashing",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -93,7 +93,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Falling",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -104,7 +104,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Idle",
-"speed": 1.0
+"speed": 0.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -147,7 +147,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Walking",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -166,14 +166,19 @@ animations = [{
 }],
 "loop": 1,
 "name": &"WallJumping",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
 size = Vector2(6, 13)
 
+[sub_resource type="Gradient" id="Gradient_vgqql"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kxuq"]
+gradient = SubResource("Gradient_vgqql")
+
 [node name="Player" type="CharacterBody2D" unique_id=2066149061 groups=["Player"]]
-collision_layer = 2
+collision_layer = 6
 script = ExtResource("1_cvnsp")
 rewind_particles = ExtResource("2_vgqql")
 rewind_player = ExtResource("3_vgqql")
@@ -182,7 +187,7 @@ rewind_player = ExtResource("3_vgqql")
 texture_filter = 1
 position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_4kxuq")
-animation = &"Idle"
+animation = &"WallJumping"
 autoplay = "Idle"
 offset = Vector2(0, -4)
 
@@ -229,6 +234,7 @@ ignore_time_scale = true
 wait_time = 0.1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1012488142]
+visible = false
 
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=1035311149]
 offset_right = 40.0
@@ -237,6 +243,13 @@ offset_bottom = 23.0
 [node name="Sfx" type="Node" parent="." unique_id=1324185680]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sfx" unique_id=1746107541]
+
+[node name="RewindPoint" type="Marker2D" parent="." unique_id=493336293]
+
+[node name="Sprite2D" type="Sprite2D" parent="RewindPoint" unique_id=648865130]
+visible = false
+scale = Vector2(0.15625, 0.140625)
+texture = SubResource("GradientTexture2D_4kxuq")
 
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="timeout" from="Timers/DashFrames" to="." method="_on_dash_frames_timeout"]

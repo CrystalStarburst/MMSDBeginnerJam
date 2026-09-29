@@ -14,7 +14,10 @@ class_name PlayerClass
 @onready var bounce_buffer: Timer = $Timers/BounceBuffer
 @onready var get_rewind_points: Timer = $Timers/GetRewindPoints
 @onready var label: Label = $CanvasLayer/Label
-#@onready var timer_label: RichTextLabel = %"HUDLayer/TimerLabel"
+@onready var rewind_point: Marker2D = $RewindPoint
+
+
+signal recall(start: bool)
 
 var rewind_curve: Curve2D
 
@@ -42,6 +45,7 @@ var can_dash: bool = true
 var facing: int = 1
 var can_jump: bool = false
 var held_jump: bool = false
+var has_dash: bool = true
 
 var has_jump_buffer: bool = false
 var has_jump_coyote: bool = false
@@ -82,15 +86,19 @@ func _physics_process(delta: float) -> void:
 	if in_rewind:
 		if Engine.get_physics_frames() % 2 == 0:
 			rewind_idx = clampi(rewind_idx+direction_x, 0, max_rewind_idx)
+		rewind_point.position = past_pos[rewind_idx]-position
+		print(rewind_point.global_position)
 		
 		queue_redraw()
 		
 		if Input.is_action_just_pressed("time phase"):
 			in_rewind = false
+			recall.emit(false)
 			position = past_pos[rewind_idx]
 			velocity = past_vel[rewind_idx]
 			past_pos.resize(rewind_idx)
 			past_vel.resize(rewind_idx)
+			rewind_point.position = Vector2(0,0)
 			queue_redraw()
 			pass
 		
@@ -104,7 +112,8 @@ func _physics_process(delta: float) -> void:
 				
 			
 			if Input.is_action_just_pressed("time phase"):
-				start_rewind()
+				start_rewind(false)
+				
 				pass
 		
 		
@@ -159,9 +168,11 @@ func _physics_process(delta: float) -> void:
 				jump_buffer.start()
 		
 		
-		if dash_cd.is_stopped() and is_on_floor():
-			can_dash = true
+		if is_on_floor():
+			has_dash = true
 		
+		if dash_cd.is_stopped() and has_dash:
+			can_dash = true
 		
 		if Input.is_action_just_pressed("dash") or not dash_buffer.is_stopped():
 			if can_dash:
@@ -171,6 +182,7 @@ func _physics_process(delta: float) -> void:
 				else:
 					velocity = Vector2(facing, 0).normalized() * DASH_SPEED
 				state = States.Dashing
+				has_dash = false
 				can_dash = false
 				dash_frames.start()
 				dash_cd.start()
@@ -227,13 +239,16 @@ func bouncepad(bounce_vec: Vector2):
 
 
 
-func start_rewind():
+func start_rewind(hurt: bool):
 	in_rewind = true
-	max_rewind_idx = past_pos.size()-1
-	past_pos.resize(max_rewind_idx)
-	past_vel.resize(max_rewind_idx)
+	recall.emit(true)
+	if hurt:
+		max_rewind_idx = past_pos.size()-1
+		past_pos.resize(max_rewind_idx)
+		past_vel.resize(max_rewind_idx)
 	max_rewind_idx = past_pos.size()-1
 	rewind_idx = max_rewind_idx
+	rewind_point.position = Vector2(0,0)
 	queue_redraw()
 
 
