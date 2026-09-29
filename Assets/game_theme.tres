@@ -1,0 +1,27 @@
+[gd_resource type="Theme" format=3 uid="uid://bp5wsf58la67q"]
+
+[ext_resource type="FontFile" uid="uid://mkxyq174wlvg" path="res://Assets/m5x7.ttf" id="1_f7lyt"]
+[ext_resource type="Texture2D" uid="uid://cf4n41t4blbwo" path="res://Assets/Menu_Buttons_large.png" id="2_4q0ub"]
+[ext_resource type="Texture2D" uid="uid://cha50y7no71g1" path="res://Assets/Menu_Buttons_pressed_large.png" id="3_epxpq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c78sm"]
+texture = ExtResource("2_4q0ub")
+texture_margin_left = 70.0
+texture_margin_right = 70.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0xqxu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tpqse"]
+texture = ExtResource("3_epxpq")
+texture_margin_left = 70.0
+texture_margin_right = 70.0
+
+[resource]
+Button/fonts/font = ExtResource("1_f7lyt")
+Button/styles/focus = SubResource("StyleBoxTexture_c78sm")
+Button/styles/hover = SubResource("StyleBoxEmpty_0xqxu")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_tpqse")
+Button/styles/normal = SubResource("StyleBoxEmpty_0xqxu")
+Button/styles/pressed = SubResource("StyleBoxTexture_tpqse")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_f7lyt")

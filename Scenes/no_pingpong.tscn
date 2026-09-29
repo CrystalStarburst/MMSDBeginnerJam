@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cauuyxhdjmhal"]
+
+[ext_resource type="Texture2D" uid="uid://dvrtpkn8awb7e" path="res://Assets/Moving_platform.png" id="1_8qe5x"]
+[ext_resource type="Script" uid="uid://c71udprg0i7b5" path="res://Scripts/no_pingpong.gd" id="1_im0ut"]
+
+[sub_resource type="Animation" id="Animation_im0ut"]
+resource_name = "Movements"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lf5k3"]
+_data = {
+&"Movements": SubResource("Animation_im0ut")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
+size = Vector2(30, 9)
+
+[node name="NO PINGPONG" type="AnimatableBody2D" unique_id=615863711]
+script = ExtResource("1_im0ut")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=491172412]
+texture = ExtResource("1_8qe5x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=224848695]
+libraries/ = SubResource("AnimationLibrary_lf5k3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1734050786]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_4kxuq")

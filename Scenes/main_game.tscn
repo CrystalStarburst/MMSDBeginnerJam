@@ -1,53 +1,53 @@
 [gd_scene format=3 uid="uid://cufrtq38ysis7"]
 
-[ext_resource type="PackedScene" uid="uid://camdl5d5hchd7" path="res://Scenes/level_1.tscn" id="1_pu3va"]
-[ext_resource type="PackedScene" uid="uid://c3tn1ecaxo8qo" path="res://Scenes/player.tscn" id="2_0e3vx"]
+[ext_resource type="Script" uid="uid://coqc6nqyep8qt" path="res://Scripts/game_manager.gd" id="1_bb2iq"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_6j5ir"]
+[ext_resource type="PackedScene" uid="uid://chpgrfxrj4kww" path="res://Scenes/pause_menu.tscn" id="3_bb2iq"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_mgc0q"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_mgc0q"]
 
-[sub_resource type="Resource" id="Resource_bb2iq"]
+[sub_resource type="Resource" id="Resource_mgc0q"]
 script = ExtResource("4_mgc0q")
+transition = 1
 
 [node name="Main Game" type="Node" unique_id=2052895336]
 
 [node name="GameManager" type="Node" parent="." unique_id=1901313845]
 unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("1_bb2iq")
 
-[node name="LevelRoot" type="Node2D" parent="." unique_id=803201644]
-unique_name_in_owner = true
-
-[node name="Level 1" parent="LevelRoot" unique_id=1265214180 instance=ExtResource("1_pu3va")]
-
-[node name="EntityRoot" type="Node2D" parent="." unique_id=293602032]
-unique_name_in_owner = true
-
-[node name="Player" parent="EntityRoot" unique_id=2066149061 instance=ExtResource("2_0e3vx")]
-position = Vector2(-352, -267)
-
-[node name="Phantom Camera" type="Node2D" parent="EntityRoot/Player" unique_id=1457979107 node_paths=PackedStringArray("follow_target")]
+[node name="PhantomCamera2D" type="Node2D" parent="GameManager" unique_id=581709785]
 top_level = true
-position = Vector2(-352, -267)
 script = ExtResource("3_6j5ir")
-follow_mode = 2
-follow_target = NodePath("..")
-zoom = Vector2(2.5, 2.5)
-tween_resource = SubResource("Resource_bb2iq")
+priority = 1
+follow_mode = 5
+zoom = Vector2(3, 3)
+tween_resource = SubResource("Resource_mgc0q")
+tween_on_load = false
 follow_damping = true
 follow_damping_value = Vector2(0.2, 0.2)
+dead_zone_width = 0.1
+dead_zone_height = 0.1
+draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
-[node name="Player Camera" type="Camera2D" parent="EntityRoot/Player" unique_id=1042298888]
-physics_interpolation_mode = 1
+[node name="Camera2D" type="Camera2D" parent="." unique_id=482817566]
 top_level = true
-position = Vector2(-352, -267)
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(3, 3)
+editor_draw_limits = true
 
-[node name="PhantomCameraHost" type="Node" parent="EntityRoot/Player/Player Camera" unique_id=1907448612]
+[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=1855282256]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("5_mgc0q")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="LevelRoot" type="Node2D" parent="." unique_id=803201644]
+unique_name_in_owner = true
+
+[node name="EntityRoot" type="Node2D" parent="." unique_id=293602032]
+unique_name_in_owner = true
 
 [node name="EffectRoot" type="Node2D" parent="." unique_id=1774317046]
 unique_name_in_owner = true
@@ -55,12 +55,12 @@ unique_name_in_owner = true
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=322586344]
 unique_name_in_owner = true
 
-[node name="TimerLabel" type="RichTextLabel" parent="HUDLayer" unique_id=2020346696 groups=["UI"]]
-offset_right = 40.0
-offset_bottom = 40.0
-bbcode_enabled = true
-text = "hi
-"
-
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=686770823]
 unique_name_in_owner = true
+layer = 20
+
+[node name="PauseMenu" parent="PauseLayer" unique_id=2020539185 instance=ExtResource("3_bb2iq")]
+visible = false
+
+[connection signal="quit_level" from="PauseLayer/PauseMenu" to="GameManager" method="_on_pause_menu_quit_level"]
+[connection signal="restart_level" from="PauseLayer/PauseMenu" to="GameManager" method="_on_pause_menu_restart_level"]

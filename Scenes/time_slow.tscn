@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmikkb6iexbgf"]
 
 [ext_resource type="Script" uid="uid://fuowrafd4wq" path="res://Scripts/time_slow.gd" id="1_ikupb"]
-[ext_resource type="Texture2D" uid="uid://xc0xxl2bu4xn" path="res://Sprites/Slow_down_time.png" id="2_uixkh"]
+[ext_resource type="Texture2D" uid="uid://c2hmus8kja87n" path="res://Assets/Slow_down_time_smaller.png" id="2_uixkh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4kxuq"]
 radius = 32.0
@@ -31,6 +31,7 @@ shape = SubResource("CircleShape2D_4kxuq")
 texture = SubResource("GradientTexture2D_mgc0q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=786037054]
+position = Vector2(0, -9)
 texture = ExtResource("2_uixkh")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

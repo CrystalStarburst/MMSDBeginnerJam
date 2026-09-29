@@ -1,0 +1,304 @@
+[gd_scene format=3 uid="uid://jclh0v4rs4qs"]
+
+[ext_resource type="Texture2D" uid="uid://c75kcup6i3wr0" path="res://Assets/Menu_particles.png" id="1_28flt"]
+[ext_resource type="Script" uid="uid://nh1lyc5kw12x" path="res://Scripts/main_menu.gd" id="1_n45e2"]
+[ext_resource type="FontFile" uid="uid://mkxyq174wlvg" path="res://Assets/m5x7.ttf" id="2_48xlc"]
+[ext_resource type="Texture2D" uid="uid://u4pb0fu8pg0h" path="res://Assets/Menu_Buttons_pressed.png" id="3_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://c7dlvejjret6a" path="res://Assets/Menu_Buttons.png" id="4_ce3w2"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_cp0ys"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_yhxw7"]
+
+[sub_resource type="Gradient" id="Gradient_cp0ys"]
+colors = PackedColorArray(0.03137255, 0, 0.12156863, 1, 0.08627451, 0, 0.2784314, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n45e2"]
+gradient = SubResource("Gradient_cp0ys")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_48xlc"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwqyf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ce3w2"]
+texture = ExtResource("3_1ehe0")
+texture_margin_left = 14.0
+texture_margin_right = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62yky"]
+texture = ExtResource("4_ce3w2")
+texture_margin_left = 14.0
+texture_margin_right = 14.0
+
+[sub_resource type="Resource" id="Resource_opfnp"]
+script = ExtResource("7_yhxw7")
+duration = 0.0
+metadata/_custom_type_script = "uid://8umksf8e80fw"
+
+[node name="Main Menu" type="Control" unique_id=1966847798]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_n45e2")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=604119161]
+layout_mode = 0
+offset_left = -160.0
+offset_top = -100.0
+offset_right = 160.0
+offset_bottom = 100.0
+texture = SubResource("GradientTexture2D_n45e2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1194824052]
+material = SubResource("CanvasItemMaterial_48xlc")
+texture = ExtResource("1_28flt")
+lifetime = 3.0
+explosiveness = 0.3
+randomness = 0.45
+emission_shape = 3
+emission_rect_extents = Vector2(144, 80)
+direction = Vector2(-1, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+anim_speed_min = 1.0
+anim_speed_max = 2.0
+
+[node name="Label" type="Label" parent="." unique_id=778174593]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -77.0
+offset_right = 57.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 32
+text = "AEONS AGO"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1342790243]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = 60.0
+offset_right = 25.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+text = "Made by CrystalStarburst for the 
+Beginners' Jam Autumn 2026"
+vertical_alignment = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=258774271]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -48.0
+offset_right = 50.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MainContainer" type="VBoxContainer" parent="CenterContainer" unique_id=304699711]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Start" type="Button" parent="CenterContainer/MainContainer" unique_id=1870534845]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Credits")
+focus_next = NodePath("../Credits")
+focus_previous = NodePath("../Quit")
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_62yky")
+text = "Start
+"
+
+[node name="Credits" type="Button" parent="CenterContainer/MainContainer" unique_id=763138912]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Start")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Start")
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_62yky")
+text = "Credits
+"
+
+[node name="Quit" type="Button" parent="CenterContainer/MainContainer" unique_id=741570273]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Credits")
+focus_neighbor_bottom = NodePath("../Start")
+focus_next = NodePath("../Start")
+focus_previous = NodePath("../Credits")
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_62yky")
+text = "Quit
+
+"
+
+[node name="StartLevelContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2066352035]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Tutorial" type="Button" parent="CenterContainer/StartLevelContainer" unique_id=1851314531]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../StartBack")
+focus_neighbor_bottom = NodePath("../Level1")
+focus_next = NodePath("../Level1")
+focus_previous = NodePath("../StartBack")
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_62yky")
+text = "Tutorial
+"
+
+[node name="Level1" type="Button" parent="CenterContainer/StartLevelContainer" unique_id=2110526058]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Tutorial")
+focus_neighbor_bottom = NodePath("../Level2")
+focus_next = NodePath("../Level2")
+focus_previous = NodePath("../Tutorial")
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_62yky")
+text = "Level 1
+
+"
+
+[node name="Level2" type="Button" parent="CenterContainer/StartLevelContainer" unique_id=1938294523]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Level1")
+focus_neighbor_bottom = NodePath("../Level3")
+focus_next = NodePath("../Level3")
+focus_previous = NodePath("../Level1")
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_62yky")
+text = "Level 2
+
+"
+
+[node name="Level3" type="Button" parent="CenterContainer/StartLevelContainer" unique_id=1466008244]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Level2")
+focus_neighbor_bottom = NodePath("../StartBack")
+focus_next = NodePath("../StartBack")
+focus_previous = NodePath("../Level2")
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_62yky")
+text = "Level 3
+
+"
+
+[node name="StartBack" type="Button" parent="CenterContainer/StartLevelContainer" unique_id=932646541]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Level3")
+focus_neighbor_bottom = NodePath("../Tutorial")
+focus_next = NodePath("../Tutorial")
+focus_previous = NodePath("../Level3")
+theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qwqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ce3w2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_62yky")
+text = "Back
+
+"
+
+[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=970123581]
+script = ExtResource("6_cp0ys")
+zoom = Vector2(4, 4)
+tween_resource = SubResource("Resource_opfnp")
+tween_on_load = false
+draw_limits = true
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[connection signal="button_up" from="CenterContainer/MainContainer/Start" to="." method="_on_start_button_up"]
+[connection signal="mouse_entered" from="CenterContainer/MainContainer/Start" to="." method="_on_start_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MainContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MainContainer/Credits" to="." method="_on_credits_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MainContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MainContainer/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/MainContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/StartLevelContainer/Tutorial" to="." method="_on_tutorial_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/StartLevelContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/StartLevelContainer/Level1" to="." method="_on_level_1_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/StartLevelContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/StartLevelContainer/Level2" to="." method="_on_level_2_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/StartLevelContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/StartLevelContainer/Level3" to="." method="_on_level_3_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/StartLevelContainer/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/StartLevelContainer/StartBack" to="." method="_on_back_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/StartLevelContainer/StartBack" to="." method="_on_start_back_pressed"]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cvt610viphk7n"]
+
+[ext_resource type="Script" uid="uid://bhspeqiq8optv" path="res://Scripts/moving_platform.gd" id="1_cprw2"]
+[ext_resource type="Texture2D" uid="uid://dvrtpkn8awb7e" path="res://Assets/Moving_platform.png" id="2_lkvgr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1b7n"]
+size = Vector2(30, 9)
+
+[node name="Moving platform NO PINGPONG" type="AnimatableBody2D" unique_id=381357039]
+script = ExtResource("1_cprw2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1551788857]
+texture = ExtResource("2_lkvgr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=713177857]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_k1b7n")

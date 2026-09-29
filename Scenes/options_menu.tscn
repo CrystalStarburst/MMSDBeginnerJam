@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b6bqebelscqxp"]
+
+[ext_resource type="Script" uid="uid://cv4fo3o4075kq" path="res://Scripts/options_menu.gd" id="1_plplt"]
+[ext_resource type="FontFile" uid="uid://c50pl7falqjbr" path="res://Assets/m3x6.ttf" id="2_uj0ok"]
+
+[sub_resource type="Gradient" id="Gradient_ce3w2"]
+colors = PackedColorArray(0.03137255, 0, 0.12156863, 0.24705882, 0.08627451, 0, 0.2784314, 0.24705882)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6y7pd"]
+gradient = SubResource("Gradient_ce3w2")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18r40"]
+bg_color = Color(0.69674665, 0.4048, 0.92, 0.49803922)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1wg4"]
+bg_color = Color(0.41952002, 0.3192, 0.57, 0.49803922)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="Theme" id="Theme_bb2iq"]
+default_font = ExtResource("2_uj0ok")
+default_font_size = 32
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_18r40")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_l1wg4")
+
+[node name="OptionsMenu" type="Control" unique_id=233631631]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1299.0
+offset_bottom = 727.0
+script = ExtResource("1_plplt")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=190110916]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_6y7pd")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=181355564]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -523.5
+offset_top = -268.5
+offset_right = 523.5
+offset_bottom = 268.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_bb2iq")
+tab_alignment = 1
+current_tab = 1
+
+[node name="Settings" type="TabBar" parent="TabContainer" unique_id=2087523132]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 0
+
+[node name="Keybinds" type="TabBar" parent="TabContainer" unique_id=1968620690]
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 1
+
+[node name="Credits" type="TabBar" parent="TabContainer" unique_id=925962337]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

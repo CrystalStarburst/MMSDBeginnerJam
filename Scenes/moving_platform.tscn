@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bp745mhrun53x"]
 
 [ext_resource type="Script" uid="uid://bhspeqiq8optv" path="res://Scripts/moving_platform.gd" id="1_anqd2"]
-[ext_resource type="Texture2D" uid="uid://b0k8qfhu16w42" path="res://icon.svg" id="1_vvyo4"]
+[ext_resource type="Texture2D" uid="uid://dvrtpkn8awb7e" path="res://Assets/Moving_platform.png" id="2_anqd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1b7n"]
-size = Vector2(20, 4)
+size = Vector2(30, 9)
 
 [sub_resource type="Animation" id="Animation_myvba"]
 resource_name = "Movement"
@@ -32,14 +32,14 @@ _data = {
 &"RESET": SubResource("Animation_vvyo4")
 }
 
-[node name="Moving platform" type="AnimatableBody2D" unique_id=381357039]
+[node name="Moving platform NO PINGPONG" type="AnimatableBody2D" unique_id=381357039]
 script = ExtResource("1_anqd2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1551788857]
-scale = Vector2(0.16, 0.04)
-texture = ExtResource("1_vvyo4")
+texture = ExtResource("2_anqd2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=713177857]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_k1b7n")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=247851828]

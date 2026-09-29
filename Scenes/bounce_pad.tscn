@@ -1,36 +1,52 @@
 [gd_scene format=3 uid="uid://bd3sf85v7ovwu"]
 
 [ext_resource type="Script" uid="uid://bpk6v33m3t5b2" path="res://Scripts/bounce_pad.gd" id="1_3p40j"]
-[ext_resource type="Texture2D" uid="uid://hn3hporao7gr" path="res://Sprites/Woody_Bouncy_Pad_1.png" id="2_nd737"]
-[ext_resource type="Texture2D" uid="uid://ckvav5lunnm2n" path="res://Sprites/Woody_Bouncy_PadMiddle.png" id="3_8c1ua"]
-[ext_resource type="Texture2D" uid="uid://h4twge8wrbeu" path="res://Sprites/Woody_Bouncy_PadDown.png" id="4_ewb1u"]
+[ext_resource type="Texture2D" uid="uid://ckucp0vct4mhd" path="res://Assets/Mushroom_bounce_pad.png" id="2_y18eo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
 size = Vector2(14, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd737"]
+atlas = ExtResource("2_y18eo")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c1ua"]
+atlas = ExtResource("2_y18eo")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewb1u"]
+atlas = ExtResource("2_y18eo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y18eo"]
+atlas = ExtResource("2_y18eo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e4cr"]
+atlas = ExtResource("2_y18eo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5twhq"]
+atlas = ExtResource("2_y18eo")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cvnsp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_8c1ua")
+"texture": SubResource("AtlasTexture_nd737")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ewb1u")
+"texture": SubResource("AtlasTexture_8c1ua")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ewb1u")
+"texture": SubResource("AtlasTexture_ewb1u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8c1ua")
+"texture": SubResource("AtlasTexture_y18eo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8c1ua")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_8c1ua")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_nd737")
+"texture": SubResource("AtlasTexture_0e4cr")
 }],
 "loop": 0,
 "name": &"Bounce",
@@ -38,7 +54,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_nd737")
+"texture": SubResource("AtlasTexture_5twhq")
 }],
 "loop": 1,
 "name": &"Default",

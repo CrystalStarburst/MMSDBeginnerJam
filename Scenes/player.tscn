@@ -1,102 +1,246 @@
 [gd_scene format=3 uid="uid://c3tn1ecaxo8qo"]
 
 [ext_resource type="Script" uid="uid://c2g7yogyatcx3" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://b0iigjx44bck4" path="res://Sprites/knight.png" id="1_v0iea"]
-[ext_resource type="Texture2D" uid="uid://rwty44wyigvn" path="res://Sprites/knight_idle.png" id="2_6t5aa"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6t5aa"]
-size = Vector2(16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(32, 0, 32, 32)
+[ext_resource type="Texture2D" uid="uid://ddp4gan2fgi5n" path="res://Assets/Rewind_particle.png" id="2_vgqql"]
+[ext_resource type="Texture2D" uid="uid://bqnj238o68ld7" path="res://Assets/Recall_ghost.png" id="3_vgqql"]
+[ext_resource type="Texture2D" uid="uid://cfgpbfw5kjp8n" path="res://Assets/16mc.png" id="4_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(64, 0, 32, 32)
+atlas = ExtResource("4_vgqql")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(96, 0, 32, 32)
+atlas = ExtResource("4_vgqql")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd4e3"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(112, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4kxuq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cvnsp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6t5aa")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_vgqql")
+}],
+"loop": 1,
+"name": &"Dashing",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fkybt")
 }],
 "loop": 1,
+"name": &"Falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3wgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3smsa")
+}],
+"loop": 1,
 "name": &"Idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}],
+"loop": 1,
+"name": &"Jumping",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukyrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dp3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4iuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd4e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqcod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igrcy")
+}],
+"loop": 1,
+"name": &"Walking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs7ks")
+}],
+"loop": 1,
+"name": &"WallCling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6n3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olqyp")
+}],
+"loop": 1,
+"name": &"WallJumping",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
-size = Vector2(8, 16)
+size = Vector2(6, 13)
 
 [node name="Player" type="CharacterBody2D" unique_id=2066149061 groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_cvnsp")
-rewind_particles = SubResource("PlaceholderTexture2D_6t5aa")
-rewind_player = ExtResource("2_6t5aa")
+rewind_particles = ExtResource("2_vgqql")
+rewind_player = ExtResource("3_vgqql")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=280969273]
 texture_filter = 1
+position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_4kxuq")
 animation = &"Idle"
 autoplay = "Idle"
 offset = Vector2(0, -4)
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="." unique_id=149064636]
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_4kxuq")
 
-[node name="DashFrames" type="Timer" parent="." unique_id=1661910972]
+[node name="Timers" type="Node" parent="." unique_id=1867197620]
+
+[node name="DashFrames" type="Timer" parent="Timers" unique_id=1661910972]
 wait_time = 0.2
 one_shot = true
 
-[node name="DashCD" type="Timer" parent="." unique_id=186339985]
+[node name="DashCD" type="Timer" parent="Timers" unique_id=186339985]
 wait_time = 0.4
 one_shot = true
 
-[node name="JumpCoyote" type="Timer" parent="." unique_id=664190712]
+[node name="JumpCoyote" type="Timer" parent="Timers" unique_id=664190712]
 wait_time = 0.15
 one_shot = true
 ignore_time_scale = true
 
-[node name="JumpBuffer" type="Timer" parent="." unique_id=509353355]
+[node name="JumpBuffer" type="Timer" parent="Timers" unique_id=509353355]
 wait_time = 0.15
 one_shot = true
 ignore_time_scale = true
 
-[node name="DashBuffer" type="Timer" parent="." unique_id=1648296648]
+[node name="DashBuffer" type="Timer" parent="Timers" unique_id=1648296648]
 wait_time = 0.15
 one_shot = true
 ignore_time_scale = true
 
-[node name="BounceCoyote" type="Timer" parent="." unique_id=1639553744]
+[node name="BounceCoyote" type="Timer" parent="Timers" unique_id=1639553744]
 wait_time = 0.05
 one_shot = true
 ignore_time_scale = true
 
-[node name="BounceBuffer" type="Timer" parent="." unique_id=1260951390]
+[node name="BounceBuffer" type="Timer" parent="Timers" unique_id=1260951390]
 wait_time = 0.1
 one_shot = true
 ignore_time_scale = true
 
+[node name="GetRewindPoints" type="Timer" parent="Timers" unique_id=1927525158]
+wait_time = 0.1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1012488142]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1035311149]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Sfx" type="Node" parent="." unique_id=1324185680]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sfx" unique_id=1746107541]
+
 [connection signal="draw" from="." to="." method="_on_draw"]
-[connection signal="timeout" from="DashFrames" to="." method="_on_dash_frames_timeout"]
-[connection signal="timeout" from="DashCD" to="." method="_on_dash_cd_timeout"]
-[connection signal="timeout" from="JumpCoyote" to="." method="_on_jump_coyote_timeout"]
-[connection signal="timeout" from="BounceCoyote" to="." method="_on_bounce_coyote_timeout"]
+[connection signal="timeout" from="Timers/DashFrames" to="." method="_on_dash_frames_timeout"]
+[connection signal="timeout" from="Timers/DashCD" to="." method="_on_dash_cd_timeout"]
+[connection signal="timeout" from="Timers/JumpCoyote" to="." method="_on_jump_coyote_timeout"]
+[connection signal="timeout" from="Timers/BounceCoyote" to="." method="_on_bounce_coyote_timeout"]
+[connection signal="timeout" from="Timers/GetRewindPoints" to="." method="_on_get_rewind_points_timeout"]

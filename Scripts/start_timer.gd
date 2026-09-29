@@ -8,8 +8,15 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.level_timer = duration
 		body.level_started = true
+		body.get_rewind_point()
 		
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.level_started = false
+		body.past_pos.clear()
+		body.past_vel.clear()
+
+
+func _on_killzone_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
