@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://jclh0v4rs4qs"]
+[gd_scene format=3 uid="uid://c4aihtk7uykd1"]
 
-[ext_resource type="Texture2D" uid="uid://c75kcup6i3wr0" path="res://Assets/Menu_particles.png" id="1_28flt"]
-[ext_resource type="Script" uid="uid://nh1lyc5kw12x" path="res://Scripts/main_menu.gd" id="1_n45e2"]
-[ext_resource type="FontFile" uid="uid://mkxyq174wlvg" path="res://Assets/m5x7.ttf" id="2_48xlc"]
-[ext_resource type="Texture2D" uid="uid://u4pb0fu8pg0h" path="res://Assets/Menu_Buttons_pressed.png" id="3_1ehe0"]
-[ext_resource type="Texture2D" uid="uid://c7dlvejjret6a" path="res://Assets/Menu_Buttons.png" id="4_ce3w2"]
-[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_cp0ys"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_yhxw7"]
+[ext_resource type="Script" uid="uid://nh1lyc5kw12x" path="res://Scripts/main_menu.gd" id="1_2ntv4"]
+[ext_resource type="Texture2D" uid="uid://c75kcup6i3wr0" path="res://Assets/Menu_particles.png" id="2_wrwoa"]
+[ext_resource type="FontFile" uid="uid://mkxyq174wlvg" path="res://Assets/m5x7.ttf" id="3_6503w"]
+[ext_resource type="Texture2D" uid="uid://u4pb0fu8pg0h" path="res://Assets/Menu_Buttons_pressed.png" id="4_hpidj"]
+[ext_resource type="Texture2D" uid="uid://c7dlvejjret6a" path="res://Assets/Menu_Buttons.png" id="5_y5tcp"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_vdi5j"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_fqccp"]
 
 [sub_resource type="Gradient" id="Gradient_cp0ys"]
 colors = PackedColorArray(0.03137255, 0, 0.12156863, 1, 0.08627451, 0, 0.2784314, 1)
@@ -33,12 +33,12 @@ fill_to = Vector2(0, 0)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwqyf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ce3w2"]
-texture = ExtResource("3_1ehe0")
+texture = ExtResource("4_hpidj")
 texture_margin_left = 14.0
 texture_margin_right = 14.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62yky"]
-texture = ExtResource("4_ce3w2")
+texture = ExtResource("5_y5tcp")
 texture_margin_left = 14.0
 texture_margin_right = 14.0
 
@@ -60,28 +60,32 @@ events = [SubResource("InputEventKey_yhxw7")]
 events = [SubResource("InputEventKey_yhxw7")]
 
 [sub_resource type="Resource" id="Resource_opfnp"]
-script = ExtResource("7_yhxw7")
+script = ExtResource("7_fqccp")
 duration = 0.0
 metadata/_custom_type_script = "uid://8umksf8e80fw"
 
 [node name="Main Menu" type="Control" unique_id=1966847798]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_n45e2")
+script = ExtResource("1_2ntv4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=525043900]
+position = Vector2(5, 2)
+zoom = Vector2(4, 4)
 
 [node name="Background" type="TextureRect" parent="." unique_id=604119161]
 layout_mode = 0
-offset_left = -160.0
+offset_left = -172.0
 offset_top = -100.0
-offset_right = 160.0
+offset_right = 169.0
 offset_bottom = 100.0
 texture = SubResource("GradientTexture2D_n45e2")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1194824052]
 material = SubResource("CanvasItemMaterial_48xlc")
-texture = ExtResource("1_28flt")
+texture = ExtResource("2_wrwoa")
 lifetime = 3.0
-explosiveness = 0.3
+explosiveness = 0.6
 randomness = 0.45
 emission_shape = 3
 emission_rect_extents = Vector2(144, 80)
@@ -101,18 +105,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -57.0
-offset_top = -73.0
+offset_top = -13.0
 offset_right = 57.0
-offset_bottom = -47.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.8175, 0.26999998, 1, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_6503w")
+theme_override_font_sizes/font_size = 64
 text = "AEONS AGO"
 horizontal_alignment = 1
 
 [node name="JamName" type="Label" parent="." unique_id=1342790243]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -126,13 +131,14 @@ offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.8234, 0.7268, 0.92, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 text = "Made by CrystalStarburst for the 
 Beginners' Jam Autumn 2026"
 vertical_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=735763875]
+visible = false
 layout_mode = 0
 offset_left = -169.0
 offset_top = -105.0
@@ -142,6 +148,7 @@ size_flags_vertical = 0
 texture = SubResource("GradientTexture2D_cp0ys")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=258774271]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -168,7 +175,7 @@ focus_neighbor_top = NodePath("../Quit")
 focus_neighbor_bottom = NodePath("../Info")
 focus_next = NodePath("../Info")
 focus_previous = NodePath("../Quit")
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -186,7 +193,7 @@ focus_neighbor_top = NodePath("../Start")
 focus_neighbor_bottom = NodePath("../Quit")
 focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Start")
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -204,7 +211,7 @@ focus_neighbor_top = NodePath("../Info")
 focus_neighbor_bottom = NodePath("../Start")
 focus_next = NodePath("../Start")
 focus_previous = NodePath("../Info")
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -233,7 +240,7 @@ theme_override_colors/font_focus_color = Color(0.72156864, 0.99215686, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.72156864, 0.99215686, 1, 1)
 theme_override_colors/font_hover_color = Color(0.72156864, 0.99215686, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.72156864, 0.99215686, 1, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -256,7 +263,7 @@ theme_override_colors/font_focus_color = Color(0.9411765, 1, 0.81960785, 1)
 theme_override_colors/font_pressed_color = Color(0.9411765, 1, 0.81960785, 1)
 theme_override_colors/font_hover_color = Color(0.9411765, 1, 0.81960785, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.9411765, 1, 0.81960785, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -280,7 +287,7 @@ theme_override_colors/font_focus_color = Color(0.78039217, 0.8509804, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.78039217, 0.8509804, 1, 1)
 theme_override_colors/font_hover_color = Color(0.78039217, 0.8509804, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.78039217, 0.8509804, 1, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -304,7 +311,7 @@ theme_override_colors/font_focus_color = Color(1, 0.6, 0.8784314, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.6, 0.8784314, 1)
 theme_override_colors/font_hover_color = Color(1, 0.6, 0.8784314, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 0.6, 0.8784314, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -323,7 +330,7 @@ focus_neighbor_top = NodePath("../Level3")
 focus_neighbor_bottom = NodePath("../Tutorial")
 focus_next = NodePath("../Tutorial")
 focus_previous = NodePath("../Level3")
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -353,7 +360,7 @@ theme_override_colors/font_focus_color = Color(0.60784316, 0.8784314, 0.7137255,
 theme_override_colors/font_pressed_color = Color(0.60784316, 0.8784314, 0.7137255, 1)
 theme_override_colors/font_hover_color = Color(0.60784316, 0.8784314, 0.7137255, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.60784316, 0.8784314, 0.7137255, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -377,7 +384,7 @@ theme_override_colors/font_focus_color = Color(0.78039217, 0.8509804, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.78039217, 0.8509804, 1, 1)
 theme_override_colors/font_hover_color = Color(0.78039217, 0.8509804, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.78039217, 0.8509804, 1, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -401,7 +408,7 @@ theme_override_colors/font_focus_color = Color(1, 0.6, 0.8784314, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.6, 0.8784314, 1)
 theme_override_colors/font_hover_color = Color(1, 0.6, 0.8784314, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 0.6, 0.8784314, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -420,7 +427,7 @@ focus_neighbor_top = NodePath("../Credits")
 focus_neighbor_bottom = NodePath("../Stats")
 focus_next = NodePath("../Stats")
 focus_previous = NodePath("../Credits")
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -450,7 +457,7 @@ offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.3, 1, 0.5916667, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 24
 text = "Stats"
 horizontal_alignment = 1
@@ -470,7 +477,7 @@ offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.53, 1, 0.82766664, 1)
-theme_override_fonts/normal_font = ExtResource("2_48xlc")
+theme_override_fonts/normal_font = ExtResource("3_6503w")
 text = "Fastest Time"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CenterContainer/StatsPage" unique_id=543721698]
@@ -488,7 +495,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.53, 1, 0.82766664, 1)
 theme_override_constants/line_separation = 8
-theme_override_fonts/normal_font = ExtResource("2_48xlc")
+theme_override_fonts/normal_font = ExtResource("3_6503w")
 text = "Tutorial:
 Level 1 (Cave):
 Level 2 (Ruins):
@@ -509,7 +516,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.53, 1, 0.82766664, 1)
 theme_override_constants/line_separation = 8
-theme_override_fonts/normal_font = ExtResource("2_48xlc")
+theme_override_fonts/normal_font = ExtResource("3_6503w")
 text = "0
 0
 0
@@ -535,7 +542,7 @@ focus_neighbor_top = NodePath("../../StartLevelContainer/Level3")
 focus_neighbor_bottom = NodePath("../../StartLevelContainer/Tutorial")
 focus_next = NodePath("../../StartLevelContainer/Tutorial")
 focus_previous = NodePath("../../StartLevelContainer/Level3")
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -565,7 +572,7 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.7199999, 0.58000004, 1, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 24
 text = "Keybinds"
 horizontal_alignment = 1
@@ -586,7 +593,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.90816665, 0.81, 1, 1)
 theme_override_constants/line_separation = 4
-theme_override_fonts/normal_font = ExtResource("2_48xlc")
+theme_override_fonts/normal_font = ExtResource("3_6503w")
 bbcode_enabled = true
 text = "[table=2]
 [cell expand][left]UP:[/left][/cell]    [cell expand][right][W] / [Up Arrow][/right][/cell]
@@ -619,7 +626,7 @@ focus_neighbor_top = NodePath("../../StartLevelContainer/Level3")
 focus_neighbor_bottom = NodePath("../../StartLevelContainer/Tutorial")
 focus_next = NodePath("../../StartLevelContainer/Tutorial")
 focus_previous = NodePath("../../StartLevelContainer/Level3")
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -632,6 +639,7 @@ text = "Back
 "
 
 [node name="CreditsPage" type="Control" parent="CenterContainer" unique_id=1078983312]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/CreditsPage" unique_id=1374734299]
@@ -648,7 +656,7 @@ offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.7614, 0.58280003, 0.94, 1)
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 24
 text = "Credits"
 horizontal_alignment = 1
@@ -669,14 +677,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.9411765, 0.72156864, 1, 1)
 theme_override_constants/line_separation = 4
-theme_override_fonts/normal_font = ExtResource("2_48xlc")
+theme_override_fonts/normal_font = ExtResource("3_6503w")
 bbcode_enabled = true
 text = "[table=2]
 [cell expand][left]Game Design:[/left][/cell]    [cell expand][right]Me[/right][/cell]
 [cell expand][left]Programming:[/left][/cell]    [cell expand][right]Me[/right][/cell]
 [cell expand][left]Art & Animation:[/left][/cell]       [cell expand][right]Me and my girlfriend <3[/right][/cell]
 [cell expand][left]Level Design:[/left][/cell]    [cell expand][right]Me[/right][/cell]
-[cell expand][left]SFX:[/left][/cell]    [cell expand][right]Pixabay[/right][/cell]
+[cell expand][left]SFX:[/left][/cell]    [cell expand][right]     [/right][/cell]
 [cell expand][left]Playtesting[/left][/cell]    [cell expand][right]My friends and people from the BJC discord community[/right][/cell]
 [cell expand][left]Font:[/left][/cell]    [cell expand][right]m5x7 font by Daniel Linssen[/right][/cell]
 [cell expand][left]Game Engine:[/left][/cell]    [cell expand][right]Godot[/right][/cell]
@@ -704,7 +712,7 @@ focus_neighbor_top = NodePath("../../StartLevelContainer/Level3")
 focus_neighbor_bottom = NodePath("../../StartLevelContainer/Tutorial")
 focus_next = NodePath("../../StartLevelContainer/Tutorial")
 focus_previous = NodePath("../../StartLevelContainer/Level3")
-theme_override_fonts/font = ExtResource("2_48xlc")
+theme_override_fonts/font = ExtResource("3_6503w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwqyf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ce3w2")
@@ -717,7 +725,7 @@ text = "Back
 "
 
 [node name="PhantomCamera2D" type="Node2D" parent="." unique_id=970123581]
-script = ExtResource("6_cp0ys")
+script = ExtResource("6_vdi5j")
 zoom = Vector2(4, 4)
 tween_resource = SubResource("Resource_opfnp")
 tween_on_load = false

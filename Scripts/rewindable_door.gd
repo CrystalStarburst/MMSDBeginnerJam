@@ -4,12 +4,13 @@ extends AnimatableBody2D
 @export var init_broken: bool
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var rewind_sound: AudioStreamPlayer2D = $RewindSound
+@onready var fastforward_sound: AudioStreamPlayer2D = $FastforwardSound
 
 var broken: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(time_machine)
 	time_machine.rewind.connect(_on_time_machine_rewind)
 	time_machine.fastforward.connect(_on_time_machine_fastforward)
 	if init_broken:
@@ -24,12 +25,15 @@ func _on_time_machine_rewind() ->void:
 	if broken:
 		animated_sprite_2d.play("reform")
 		animation_player.play("Reforming")
+		rewind_sound.play()
 		broken = false
+		
 
 func _on_time_machine_fastforward() ->void:
 	if not broken:
 		animated_sprite_2d.play("break")
 		animation_player.play("Breaking")
+		fastforward_sound.play()
 		broken = true
 
 

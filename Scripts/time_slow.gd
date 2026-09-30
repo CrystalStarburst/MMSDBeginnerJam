@@ -13,7 +13,6 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print(slowdown)
 	Engine.time_scale = slowdown
 	body.time_scale = slowdown
 		

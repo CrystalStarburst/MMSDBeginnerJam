@@ -13,15 +13,19 @@ class_name PlayerClass
 @onready var bounce_coyote: Timer = $Timers/BounceCoyote
 @onready var bounce_buffer: Timer = $Timers/BounceBuffer
 @onready var get_rewind_points: Timer = $Timers/GetRewindPoints
-@onready var label: Label = $CanvasLayer/Label
+@onready var recall_tip: Label = $CanvasLayer/Label
 @onready var rewind_point: Marker2D = $RewindPoint
+
+@onready var walking_sound: AudioStreamPlayer2D = $Sfx/WalkingSound
+@onready var dashing_sound: AudioStreamPlayer2D = $Sfx/DashingSound
+@onready var recall_sound: AudioStreamPlayer2D = $Sfx/RecallSound
+@onready var jump_sound: AudioStreamPlayer2D = $Sfx/JumpSound
+@onready var wall_sliding_sound: AudioStreamPlayer2D = $Sfx/WallSlidingSound
 
 
 signal recall(start: bool)
 
-var rewind_curve: Curve2D
 
-const C = 550.0
 const SPEED = 100.0
 const JUMP_VELOCITY = -250.0
 const ACCELERATION = 2500.0
@@ -34,11 +38,6 @@ const PEAK_GRAVITY = GRAVITY * 0.6
 const MAX_FALL_SPEED = 400.0
 const MAX_WALL_SPEED = MAX_FALL_SPEED * 0.4
 const WALL_JUMP_PUSHOFF = 250.0
-const DASH_PENALTY = 3
-
-var level_timer: float
-var time_scale: float = 1
-var gamma: float = (1-(velocity.length()/C)**2)**0.5
 
 var dashing: bool = false
 var can_dash: bool = true
@@ -63,6 +62,9 @@ var in_rewind: bool = false
 var rewind_idx: int 
 var max_rewind_idx: int
 
+var in_cutscene = false
+var in_tutorial = true
+
 enum States {
 	Idle, 
 	Walking,
@@ -70,13 +72,35 @@ enum States {
 	Jumping, 
 	Falling,
 	WallSliding, 
-	WallJumping
+	WallJumping,
+	Recalling
 }
 
 var state: States = States.Idle
 
+func _ready() -> void:
+	walking_sound.play()
+	wall_sliding_sound.play()
+
 func _physics_process(delta: float) -> void:
 	
+	if in_cutscene:
+		match state:
+			States.Idle: 
+				player_sprite.play("Idle")
+			States.Walking: 
+				player_sprite.play("Walking")
+			States.Dashing: 
+				player_sprite.play("Dashing")
+			States.Jumping: 
+				player_sprite.play("Jumping")
+			States.Falling: 
+				player_sprite.play("Falling")
+			States.WallSliding: 
+				player_sprite.play("WallCling")
+			States.WallJumping: 
+				player_sprite.play("WallJumping")
+		return
 	# Get the input direction and handle the movement/deceleration.
 	@warning_ignore("narrowing_conversion")
 	var direction_x: int = Input.get_axis("left", "right")
@@ -84,10 +108,9 @@ func _physics_process(delta: float) -> void:
 	var direction_y: int = Input.get_axis("up", "down")
 	
 	if in_rewind:
-		if Engine.get_physics_frames() % 2 == 0:
+		if Engine.get_physics_frames() %3 == 0:
 			rewind_idx = clampi(rewind_idx+direction_x, 0, max_rewind_idx)
 		rewind_point.position = past_pos[rewind_idx]-position
-		print(rewind_point.global_position)
 		
 		queue_redraw()
 		
@@ -99,22 +122,20 @@ func _physics_process(delta: float) -> void:
 			past_pos.resize(rewind_idx)
 			past_vel.resize(rewind_idx)
 			rewind_point.position = Vector2(0,0)
+			recall_tip.hide()
 			queue_redraw()
-			pass
+			return
 		
 	else:
 		if level_started:
-			level_timer -= delta
-			label.text = str(level_timer)
-			#timer_label.text = str(snappedf(level_timer,0.1))
 			if get_rewind_points.is_stopped():
 				get_rewind_point()
 				
 			
 			if Input.is_action_just_pressed("time phase"):
 				start_rewind(false)
-				
-				pass
+				state = States.Recalling
+				return
 		
 		
 		if not state in [States.Dashing]:
@@ -164,6 +185,7 @@ func _physics_process(delta: float) -> void:
 					velocity.x = get_wall_normal().x * WALL_JUMP_PUSHOFF
 					state = States.WallJumping
 				velocity.y = JUMP_VELOCITY
+				jump_sound.play()
 			elif Input.is_action_just_pressed("jump"):
 				jump_buffer.start()
 		
@@ -186,7 +208,7 @@ func _physics_process(delta: float) -> void:
 				can_dash = false
 				dash_frames.start()
 				dash_cd.start()
-				level_timer -= DASH_PENALTY*time_scale
+				dashing_sound.play()
 			elif Input.is_action_just_pressed("dash"):
 				dash_buffer.start()
 				
@@ -206,25 +228,35 @@ func _physics_process(delta: float) -> void:
 		
 		player_sprite.set_flip_h(facing!=1)
 		
-		match state:
-			States.Idle: 
-				player_sprite.play("Idle")
-			States.Walking: 
-				player_sprite.play("Walking")
-			States.Dashing: 
-				player_sprite.play("Dashing")
-			States.Jumping: 
-				player_sprite.play("Jumping")
-			States.Falling: 
-				player_sprite.play("Falling")
-			States.WallSliding: 
-				player_sprite.play("WallCling")
-			States.WallJumping: 
-				player_sprite.play("WallJumping")
-		
-		#print("state: ", state, "Velocity", velocity)
 		move_and_slide()
+		
+	pause_sounds()
+	match state:
+		States.Idle: 
+			player_sprite.play("Idle")
+		States.Walking: 
+			player_sprite.play("Walking")
+			walking_sound.stream_paused = false
+		States.Dashing: 
+			player_sprite.play("Dashing")
+			dashing_sound.stream_paused = false
+		States.Jumping: 
+			player_sprite.play("Jumping")
+		States.Falling: 
+			player_sprite.play("Falling")
+		States.WallSliding: 
+			player_sprite.play("WallCling")
+			wall_sliding_sound.stream_paused = false
+		States.WallJumping: 
+			player_sprite.play("WallJumping")
+		
 
+
+func pause_sounds() -> void:
+	walking_sound.stream_paused = true
+	dashing_sound.stream_paused = true
+	wall_sliding_sound.stream_paused = true
+	
 
 func bouncepad(bounce_vec: Vector2):
 	if held_jump or not bounce_buffer.is_stopped():
@@ -249,6 +281,9 @@ func start_rewind(hurt: bool):
 	max_rewind_idx = past_pos.size()-1
 	rewind_idx = max_rewind_idx
 	rewind_point.position = Vector2(0,0)
+	recall_sound.play()
+	if in_tutorial:
+		recall_tip.show()
 	queue_redraw()
 
 
@@ -261,11 +296,6 @@ func _on_dash_frames_timeout() -> void:
 	else:
 		state = States.Falling
 	
-
-
-func _on_dash_cd_timeout() -> void:
-	pass
-
 
 func _draw() -> void:
 	if in_rewind:
@@ -295,6 +325,3 @@ func get_rewind_point() ->void:
 		past_pos.append(position)
 		past_vel.append(velocity)
 		get_rewind_points.start()
-		if past_pos.size() == 1: 
-			rewind_curve = Curve2D.new()
-		

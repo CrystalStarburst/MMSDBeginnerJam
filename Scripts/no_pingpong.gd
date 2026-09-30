@@ -13,6 +13,7 @@ func _ready() -> void:
 	anim.track_insert_key(track_idx, 0, position)
 	anim.track_insert_key(track_idx, pause_time/2, position)
 	anim.track_insert_key(track_idx, move_duration - pause_time/2 , position+move_vector)
+	anim.track_insert_key(track_idx, move_duration-0.1, position+move_vector)
 	anim.length = move_duration
 	var library = animation_player.get_animation_library("")
 	var animname = "Movement_" + str(get_instance_id())

@@ -6,13 +6,70 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_mgc0q"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_mgc0q"]
 
+[sub_resource type="Animation" id="Animation_mgc0q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bb2iq"]
+resource_name = "Transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 0.23325834, 1, 2.1435463),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_18r40"]
+_data = {
+&"RESET": SubResource("Animation_mgc0q"),
+&"Transition": SubResource("Animation_bb2iq")
+}
+
 [sub_resource type="Resource" id="Resource_mgc0q"]
 script = ExtResource("4_mgc0q")
 transition = 1
 
-[node name="Main Game" type="Node" unique_id=2052895336]
+[node name="MainGame" type="Node" unique_id=2052895336]
 
-[node name="GameManager" type="Node" parent="." unique_id=1901313845]
+[node name="ScreenLayer" type="CanvasLayer" parent="." unique_id=322586344]
+unique_name_in_owner = true
+layer = 50
+
+[node name="ColorRect" type="ColorRect" parent="ScreenLayer" unique_id=89560826]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -33991.0
+offset_top = -20767.0
+offset_right = 115884.0
+offset_bottom = 44641.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScreenLayer/ColorRect" unique_id=1563692702]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_18r40")
+
+[node name="GameManager" type="Node" parent="." unique_id=1901313845 groups=["GameManagers"]]
 unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("1_bb2iq")
@@ -32,6 +89,9 @@ dead_zone_height = 0.1
 draw_limits = true
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
+[node name="MouseTimer" type="Timer" parent="GameManager" unique_id=1685343669]
+wait_time = 3.0
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=482817566]
 top_level = true
 zoom = Vector2(3, 3)
@@ -50,9 +110,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="EffectRoot" type="Node2D" parent="." unique_id=1774317046]
-unique_name_in_owner = true
-
-[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=322586344]
 unique_name_in_owner = true
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=686770823]

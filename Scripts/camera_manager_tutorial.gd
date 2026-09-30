@@ -13,6 +13,7 @@ func init_camera() -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	PCam0.tween_resource.duration = 0.0
 	PCam0.follow_target = player
+	GCam0.follow_targets = [player, player.get_node("RewindPoint")]
 
 func recall_mode(start: bool) -> void:
 	match curr_pcam:

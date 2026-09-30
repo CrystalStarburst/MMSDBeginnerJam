@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cf4n41t4blbwo" path="res://Assets/Menu_Buttons_large.png" id="4_sjs17"]
 [ext_resource type="Theme" uid="uid://bp5wsf58la67q" path="res://Assets/game_theme.tres" id="5_vmyb1"]
 
-[sub_resource type="Gradient" id="Gradient_ce3w2"]
+[sub_resource type="Gradient" id="Gradient_vmyb1"]
 colors = PackedColorArray(0.03, 0, 0.12, 0.3764706, 0.08866665, 0, 0.28, 0.37254903)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_73nn6"]
-gradient = SubResource("Gradient_ce3w2")
+gradient = SubResource("Gradient_vmyb1")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
@@ -25,6 +25,28 @@ texture_margin_right = 70.0
 texture = ExtResource("4_sjs17")
 texture_margin_left = 70.0
 texture_margin_right = 70.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_yhxw7"]
+
+[sub_resource type="Shortcut" id="Shortcut_cp0ys"]
+events = [SubResource("InputEventKey_yhxw7")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_524vl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjs17"]
+texture = ExtResource("3_myy0f")
+texture_margin_left = 70.0
+texture_margin_right = 70.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u8tnp"]
+texture = ExtResource("4_sjs17")
+texture_margin_left = 70.0
+texture_margin_right = 70.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_trj04"]
+
+[sub_resource type="Shortcut" id="Shortcut_taale"]
+events = [SubResource("InputEventKey_trj04")]
 
 [node name="PauseMenu" type="Control" unique_id=2020539185]
 process_mode = 2
@@ -55,12 +77,85 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CentreContainer" unique_id=1185602382]
-custom_minimum_size = Vector2(384, 0)
+[node name="PausedPage" type="Control" parent="CentreContainer" unique_id=1047687664]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="CentreContainer/PausedPage" unique_id=1962565210]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -631.0
+offset_top = 199.0
+offset_right = -229.0
+offset_bottom = 353.5
+grow_vertical = 2
+theme = ExtResource("5_vmyb1")
+theme_override_font_sizes/font_size = 32
+text = "Tips:
+
+You can dash in 8 directions!
+Hold jump on mushrooms to go higher!
+You can recall through doors!"
+
+[node name="Label3" type="Label" parent="CentreContainer/PausedPage" unique_id=1786228838]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = -315.0
+offset_right = 202.0
+offset_bottom = -160.5
+grow_horizontal = 2
+theme = ExtResource("5_vmyb1")
+theme_override_font_sizes/font_size = 96
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CentreContainer/PausedPage" unique_id=1597288240]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 192.0
+offset_top = 159.0
+offset_right = 636.0
+offset_bottom = 359.0
+grow_vertical = 2
+theme = ExtResource("5_vmyb1")
+theme_override_font_sizes/font_size = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CentreContainer/PausedPage" unique_id=1185602382]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 0
+offset_left = -192.0
+offset_top = -134.0
+offset_right = 192.0
+offset_bottom = 134.0
 alignment = 1
 
-[node name="Resume" type="Button" parent="CentreContainer/VBoxContainer" unique_id=1465633639]
+[node name="Resume" type="Button" parent="CentreContainer/PausedPage/VBoxContainer" unique_id=1465633639]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../ReturnToMain")
+focus_neighbor_bottom = NodePath("../Keybinds")
+focus_next = NodePath("../Keybinds")
+focus_previous = NodePath("../ReturnToMain")
+theme_override_fonts/font = ExtResource("2_vmyb1")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0xqxu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tpqse")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0xqxu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_tpqse")
+theme_override_styles/focus = SubResource("StyleBoxTexture_c78sm")
+shortcut = SubResource("Shortcut_cp0ys")
+text = "Resume
+"
+
+[node name="Keybinds" type="Button" parent="CentreContainer/PausedPage/VBoxContainer" unique_id=1296956784]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
@@ -75,17 +170,17 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_tpqse")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_0xqxu")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_tpqse")
 theme_override_styles/focus = SubResource("StyleBoxTexture_c78sm")
-text = "Resume
+text = "Keybinds
 "
 
-[node name="Restart" type="Button" parent="CentreContainer/VBoxContainer" unique_id=20597488]
+[node name="Restart" type="Button" parent="CentreContainer/PausedPage/VBoxContainer" unique_id=20597488]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_top = NodePath("../Keybinds")
 focus_neighbor_bottom = NodePath("../ReturnToMain")
 focus_next = NodePath("../ReturnToMain")
-focus_previous = NodePath(".")
+focus_previous = NodePath("../Keybinds")
 theme_override_fonts/font = ExtResource("2_vmyb1")
 theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0xqxu")
@@ -96,7 +191,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_c78sm")
 text = "Restart
 "
 
-[node name="ReturnToMain" type="Button" parent="CentreContainer/VBoxContainer" unique_id=29153393]
+[node name="ReturnToMain" type="Button" parent="CentreContainer/PausedPage/VBoxContainer" unique_id=29153393]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
@@ -114,63 +209,98 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_c78sm")
 text = "Quit
 "
 
-[node name="Label" type="Label" parent="." unique_id=1962565210]
+[node name="KeybindsPage" type="Control" parent="CentreContainer" unique_id=1522889607]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CentreContainer/KeybindsPage" unique_id=1880698997]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = 201.0
-offset_right = 398.0
-offset_bottom = 355.5
-grow_vertical = 2
-theme = ExtResource("5_vmyb1")
-theme_override_font_sizes/font_size = 32
-text = "WASD/Arrows to move
-
-Space to jump
-
-Ctrl while holding a direction to dash"
-
-[node name="Label3" type="Label" parent="." unique_id=1786228838]
-layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -192.0
-offset_top = 45.0
-offset_right = 202.0
-offset_bottom = 199.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -283.0
+offset_right = 135.0
+offset_bottom = -207.0
 grow_horizontal = 2
-theme = ExtResource("5_vmyb1")
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.7199999, 0.58000004, 1, 1)
+theme_override_fonts/font = ExtResource("2_vmyb1")
 theme_override_font_sizes/font_size = 96
-text = "PAUSED"
+text = "Keybinds"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="." unique_id=1597288240]
+[node name="RichTextLabel" type="RichTextLabel" parent="CentreContainer/KeybindsPage" unique_id=722055605]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 832.0
-offset_top = 159.0
-offset_right = 1276.0
-offset_bottom = 359.0
+offset_left = -540.0
+offset_top = -199.0
+offset_right = 566.0
+offset_bottom = 245.0
+grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("5_vmyb1")
-theme_override_font_sizes/font_size = 32
-text = "Hold jump on mushrooms to bounce higher
+theme_override_colors/default_color = Color(0.90816665, 0.81, 1, 1)
+theme_override_constants/line_separation = 4
+theme_override_fonts/normal_font = ExtResource("2_vmyb1")
+theme_override_font_sizes/normal_font_size = 56
+bbcode_enabled = true
+text = "[table=2]
+[cell expand][left]UP:                      [/left][/cell]    [cell expand][right][W] / [Up Arrow][/right][/cell]
+[cell expand][left]DOWN:[/left][/cell]       [cell expand][right][S] / [Down Arrow][/right][/cell]
+[cell expand][left]LEFT:[/left][/cell]    [cell expand][right][A] / [Left Arrow][/right][/cell]
+[cell expand][left]RIGHT:[/left][/cell]    [cell expand][right][D] / [Right Arrow][/right][/cell]
+[cell expand][left]JUMP:[/left][/cell]    [cell expand][right][Space][/right][/cell]
+[cell expand][left]DASH:[/left][/cell]    [cell expand][right][Left Ctrl] / [Right Ctrl] / [Z] / [/][/right][/cell]
+[cell expand][left]RECALL:[/left][/cell]    [cell expand][right][Left Shift] / [Right Shift] / [Enter][/right][/cell]
+[cell expand][left]REWIND:[/left][/cell]    [cell expand][right][R][/right][/cell]
+[cell expand][left]FASTFORWARD:      [/left][/cell]    [cell expand][right][F][/right][/cell]
+[/table]"
 
-Shift: Player Rewind
+[node name="KeybindsBack" type="Button" parent="CentreContainer/KeybindsPage" unique_id=1202862731]
+custom_minimum_size = Vector2(288, 16)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = 236.0
+offset_right = 55.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../StartLevelContainer/Level3")
+focus_neighbor_bottom = NodePath("../../StartLevelContainer/Tutorial")
+focus_next = NodePath("../../StartLevelContainer/Tutorial")
+focus_previous = NodePath("../../StartLevelContainer/Level3")
+theme_override_fonts/font = ExtResource("2_vmyb1")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxEmpty_524vl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sjs17")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_524vl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_sjs17")
+theme_override_styles/focus = SubResource("StyleBoxTexture_u8tnp")
+shortcut = SubResource("Shortcut_taale")
+text = "Back
 
-Time Machine: 
-- R: rewind
-- F: fastforward"
+"
 
-[connection signal="mouse_entered" from="CentreContainer/VBoxContainer/Resume" to="." method="_on_resume_mouse_entered"]
-[connection signal="pressed" from="CentreContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="mouse_entered" from="CentreContainer/VBoxContainer/Restart" to="." method="_on_restart_mouse_entered"]
-[connection signal="pressed" from="CentreContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="mouse_entered" from="CentreContainer/VBoxContainer/ReturnToMain" to="." method="_on_return_to_main_mouse_entered"]
-[connection signal="pressed" from="CentreContainer/VBoxContainer/ReturnToMain" to="." method="_on_return_to_main_pressed"]
+[connection signal="mouse_entered" from="CentreContainer/PausedPage/VBoxContainer/Resume" to="." method="_on_resume_mouse_entered"]
+[connection signal="pressed" from="CentreContainer/PausedPage/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="CentreContainer/PausedPage/VBoxContainer/Keybinds" to="." method="_on_keybinds_mouse_entered"]
+[connection signal="pressed" from="CentreContainer/PausedPage/VBoxContainer/Keybinds" to="." method="_on_keybinds_pressed"]
+[connection signal="mouse_entered" from="CentreContainer/PausedPage/VBoxContainer/Restart" to="." method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="CentreContainer/PausedPage/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="mouse_entered" from="CentreContainer/PausedPage/VBoxContainer/ReturnToMain" to="." method="_on_return_to_main_mouse_entered"]
+[connection signal="pressed" from="CentreContainer/PausedPage/VBoxContainer/ReturnToMain" to="." method="_on_return_to_main_pressed"]
+[connection signal="mouse_entered" from="CentreContainer/KeybindsPage/KeybindsBack" to="." method="_on_keybinds_back_mouse_entered"]
+[connection signal="pressed" from="CentreContainer/KeybindsPage/KeybindsBack" to="." method="_on_keybinds_back_pressed"]

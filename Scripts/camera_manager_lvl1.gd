@@ -12,7 +12,6 @@ extends Node
 
 
 var curr_pcam: int = -1
-var start_game: bool = true
 
 func init_camera() -> void:
 	var player = get_tree().get_first_node_in_group("Player")

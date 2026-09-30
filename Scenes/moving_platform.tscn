@@ -32,7 +32,7 @@ _data = {
 &"RESET": SubResource("Animation_vvyo4")
 }
 
-[node name="Moving platform NO PINGPONG" type="AnimatableBody2D" unique_id=381357039]
+[node name="Moving platform" type="AnimatableBody2D" unique_id=381357039]
 script = ExtResource("1_anqd2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1551788857]

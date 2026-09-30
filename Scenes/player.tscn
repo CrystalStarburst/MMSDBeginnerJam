@@ -4,6 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://ddp4gan2fgi5n" path="res://Assets/Rewind_particle.png" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://bqnj238o68ld7" path="res://Assets/Recall_ghost.png" id="3_vgqql"]
 [ext_resource type="Texture2D" uid="uid://cfgpbfw5kjp8n" path="res://Assets/16mc.png" id="4_vgqql"]
+[ext_resource type="AudioStream" uid="uid://bum2n82iqr421" path="res://Assets/Sfx/walking.mp3" id="5_3smsa"]
+[ext_resource type="FontFile" uid="uid://mkxyq174wlvg" path="res://Assets/m5x7.ttf" id="5_tx1dd"]
+[ext_resource type="AudioStream" uid="uid://rbrlib1q05cn" path="res://Assets/Sfx/dash.mp3" id="6_8erm5"]
+[ext_resource type="AudioStream" uid="uid://b345puhygb7fl" path="res://Assets/Sfx/Recall.mp3" id="7_f1ek2"]
+[ext_resource type="AudioStream" uid="uid://dyw8fifpka5nx" path="res://Assets/Sfx/Jump.mp3" id="8_8erm5"]
+[ext_resource type="AudioStream" uid="uid://6u4n0u2ess1a" path="res://Assets/Sfx/WallSliding.mp3" id="9_f1ek2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
 atlas = ExtResource("4_vgqql")
@@ -189,9 +195,11 @@ position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_4kxuq")
 animation = &"WallJumping"
 autoplay = "Idle"
+frame_progress = 0.34118477
 offset = Vector2(0, -4)
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="." unique_id=149064636]
+visible = false
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_4kxuq")
 
@@ -234,15 +242,44 @@ ignore_time_scale = true
 wait_time = 0.1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1012488142]
-visible = false
 
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=1035311149]
-offset_right = 40.0
-offset_bottom = 23.0
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -307.5
+offset_right = 307.5
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.60366666, 1, 0.18, 1)
+theme_override_fonts/font = ExtResource("5_tx1dd")
+theme_override_font_sizes/font_size = 48
+text = "You are in recall mode.
+Toggle using [Shift],
+choose recall point with [Left] / [Right]"
 
 [node name="Sfx" type="Node" parent="." unique_id=1324185680]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sfx" unique_id=1746107541]
+[node name="WalkingSound" type="AudioStreamPlayer2D" parent="Sfx" unique_id=1746107541]
+stream = ExtResource("5_3smsa")
+volume_db = 24.0
+
+[node name="DashingSound" type="AudioStreamPlayer2D" parent="Sfx" unique_id=1137350552]
+stream = ExtResource("6_8erm5")
+pitch_scale = 0.6
+
+[node name="RecallSound" type="AudioStreamPlayer2D" parent="Sfx" unique_id=521714177]
+stream = ExtResource("7_f1ek2")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Sfx" unique_id=1978393167]
+stream = ExtResource("8_8erm5")
+volume_db = 2.0
+pitch_scale = 0.2
+
+[node name="WallSlidingSound" type="AudioStreamPlayer2D" parent="Sfx" unique_id=1397262078]
+stream = ExtResource("9_f1ek2")
+volume_db = 2.0
 
 [node name="RewindPoint" type="Marker2D" parent="." unique_id=493336293]
 
